@@ -1,0 +1,363 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="lmsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Assignment">
+    <Key>
+      <PropertyRef Name="assignmentId" />
+    </Key>
+    <Property Name="description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="title" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="dueDate" Type="datetime" Nullable="false" />
+    <Property Name="openDate" Type="datetime" Nullable="false" />
+    <Property Name="assignmentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="sectionId" Type="int" Nullable="false" />
+    <Property Name="points" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Course">
+    <Key>
+      <PropertyRef Name="courseId" />
+    </Key>
+    <Property Name="courseId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="course_title" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="course_num" Type="int" Nullable="false" />
+    <Property Name="department" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Discussion">
+    <Key>
+      <PropertyRef Name="discussionId" />
+    </Key>
+    <Property Name="discussionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="sectionId" Type="int" />
+    <Property Name="openDate" Type="datetime" />
+    <Property Name="closeDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Enrollment">
+    <Key>
+      <PropertyRef Name="studentId" />
+      <PropertyRef Name="sectionId" />
+    </Key>
+    <Property Name="studentId" Type="int" Nullable="false" />
+    <Property Name="sectionId" Type="int" Nullable="false" />
+    <Property Name="final_grade" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="PassFail" Type="bit" />
+  </EntityType>
+  <EntityType Name="Grade">
+    <Key>
+      <PropertyRef Name="studentId" />
+      <PropertyRef Name="assignmentId" />
+    </Key>
+    <Property Name="studentId" Type="int" Nullable="false" />
+    <Property Name="assignmentId" Type="int" Nullable="false" />
+    <Property Name="comments" Type="varchar" MaxLength="300" />
+    <Property Name="rubric" Type="varchar" MaxLength="3000" />
+    <Property Name="value" Type="int" />
+    <Property Name="filePath" Type="nvarchar" MaxLength="260" />
+  </EntityType>
+  <EntityType Name="Instructor">
+    <Key>
+      <PropertyRef Name="instructorId" />
+    </Key>
+    <Property Name="userId" Type="int" />
+    <Property Name="first_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="last_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="instructorId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="email" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="bio" Type="nvarchar(max)" />
+    <Property Name="department" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Pages">
+    <Key>
+      <PropertyRef Name="pageId" />
+    </Key>
+    <Property Name="sectionId" Type="int" />
+    <Property Name="pageId" Type="varchar" MaxLength="90" Nullable="false" />
+    <Property Name="text" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Quiz">
+    <Key>
+      <PropertyRef Name="quizId" />
+    </Key>
+    <Property Name="description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="title" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="dueDate" Type="datetime" Nullable="false" />
+    <Property Name="openDate" Type="datetime" Nullable="false" />
+    <Property Name="sectionId" Type="int" Nullable="false" />
+    <Property Name="security" Type="int" Nullable="false" />
+    <Property Name="assignmentId" Type="int" Nullable="false" />
+    <Property Name="securitySettings" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="quizId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Replies">
+    <Key>
+      <PropertyRef Name="replyId" />
+    </Key>
+    <Property Name="discussionId" Type="int" />
+    <Property Name="studentId" Type="int" />
+    <Property Name="replyText" Type="varchar" MaxLength="3000" />
+    <Property Name="replyDate" Type="datetime" />
+    <Property Name="replyId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Section">
+    <Key>
+      <PropertyRef Name="sectionId" />
+    </Key>
+    <Property Name="sectionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="location" Type="nvarchar" MaxLength="50" />
+    <Property Name="instructorId" Type="int" />
+    <Property Name="semester" Type="nvarchar" MaxLength="50" />
+    <Property Name="meeting_times" Type="nvarchar" MaxLength="50" />
+    <Property Name="prerequisites" Type="nvarchar" MaxLength="50" />
+    <Property Name="courseId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SectionFiles">
+    <Key>
+      <PropertyRef Name="sectionId" />
+      <PropertyRef Name="filePath" />
+    </Key>
+    <Property Name="sectionId" Type="int" Nullable="false" />
+    <Property Name="filePath" Type="nvarchar" MaxLength="260" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Student">
+    <Key>
+      <PropertyRef Name="studentId" />
+    </Key>
+    <Property Name="userId" Type="int" />
+    <Property Name="first_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="last_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="email" Type="nvarchar" MaxLength="50" />
+    <Property Name="studentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="userId" />
+    </Key>
+    <Property Name="userId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="email" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="username" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="password" Type="varchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Assignment_Assignment">
+    <End Role="Assignment" Type="Self.Assignment" Multiplicity="1" />
+    <End Role="Assignment1" Type="Self.Assignment" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Assignment">
+        <PropertyRef Name="assignmentId" />
+      </Principal>
+      <Dependent Role="Assignment1">
+        <PropertyRef Name="assignmentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Enrollment_Section">
+    <End Role="Section" Type="Self.Section" Multiplicity="1" />
+    <End Role="Enrollment" Type="Self.Enrollment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Section">
+        <PropertyRef Name="sectionId" />
+      </Principal>
+      <Dependent Role="Enrollment">
+        <PropertyRef Name="sectionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Enrollment_Student">
+    <End Role="Student" Type="Self.Student" Multiplicity="1" />
+    <End Role="Enrollment" Type="Self.Enrollment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="studentId" />
+      </Principal>
+      <Dependent Role="Enrollment">
+        <PropertyRef Name="studentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Grade_Assignment">
+    <End Role="Assignment" Type="Self.Assignment" Multiplicity="1" />
+    <End Role="Grade" Type="Self.Grade" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Assignment">
+        <PropertyRef Name="assignmentId" />
+      </Principal>
+      <Dependent Role="Grade">
+        <PropertyRef Name="assignmentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Grade_Grade">
+    <End Role="Grade" Type="Self.Grade" Multiplicity="1" />
+    <End Role="Grade1" Type="Self.Grade" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Grade">
+        <PropertyRef Name="studentId" />
+        <PropertyRef Name="assignmentId" />
+      </Principal>
+      <Dependent Role="Grade1">
+        <PropertyRef Name="studentId" />
+        <PropertyRef Name="assignmentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Grade_Student">
+    <End Role="Student" Type="Self.Student" Multiplicity="1" />
+    <End Role="Grade" Type="Self.Grade" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="studentId" />
+      </Principal>
+      <Dependent Role="Grade">
+        <PropertyRef Name="studentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Instructor_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="Instructor" Type="Self.Instructor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="userId" />
+      </Principal>
+      <Dependent Role="Instructor">
+        <PropertyRef Name="userId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pages_Section">
+    <End Role="Section" Type="Self.Section" Multiplicity="0..1" />
+    <End Role="Pages" Type="Self.Pages" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Section">
+        <PropertyRef Name="sectionId" />
+      </Principal>
+      <Dependent Role="Pages">
+        <PropertyRef Name="sectionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Quiz_Assignment">
+    <End Role="Assignment" Type="Self.Assignment" Multiplicity="1" />
+    <End Role="Quiz" Type="Self.Quiz" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Assignment">
+        <PropertyRef Name="assignmentId" />
+      </Principal>
+      <Dependent Role="Quiz">
+        <PropertyRef Name="assignmentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Replies_Discussion">
+    <End Role="Discussion" Type="Self.Discussion" Multiplicity="0..1" />
+    <End Role="Replies" Type="Self.Replies" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Discussion">
+        <PropertyRef Name="discussionId" />
+      </Principal>
+      <Dependent Role="Replies">
+        <PropertyRef Name="discussionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Replies_Student">
+    <End Role="Student" Type="Self.Student" Multiplicity="0..1" />
+    <End Role="Replies" Type="Self.Replies" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="studentId" />
+      </Principal>
+      <Dependent Role="Replies">
+        <PropertyRef Name="studentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Section_Instructor">
+    <End Role="Instructor" Type="Self.Instructor" Multiplicity="0..1" />
+    <End Role="Section" Type="Self.Section" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Instructor">
+        <PropertyRef Name="instructorId" />
+      </Principal>
+      <Dependent Role="Section">
+        <PropertyRef Name="instructorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SectionFiles_Section">
+    <End Role="Section" Type="Self.Section" Multiplicity="1" />
+    <End Role="SectionFiles" Type="Self.SectionFiles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Section">
+        <PropertyRef Name="sectionId" />
+      </Principal>
+      <Dependent Role="SectionFiles">
+        <PropertyRef Name="sectionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="lmsModelStoreContainer">
+    <EntitySet Name="Assignment" EntityType="Self.Assignment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Course" EntityType="Self.Course" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Discussion" EntityType="Self.Discussion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Enrollment" EntityType="Self.Enrollment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Grade" EntityType="Self.Grade" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Instructor" EntityType="Self.Instructor" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Pages" EntityType="Self.Pages" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Quiz" EntityType="Self.Quiz" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Replies" EntityType="Self.Replies" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Section" EntityType="Self.Section" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SectionFiles" EntityType="Self.SectionFiles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Assignment_Assignment" Association="Self.FK_Assignment_Assignment">
+      <End Role="Assignment" EntitySet="Assignment" />
+      <End Role="Assignment1" EntitySet="Assignment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Enrollment_Section" Association="Self.FK_Enrollment_Section">
+      <End Role="Section" EntitySet="Section" />
+      <End Role="Enrollment" EntitySet="Enrollment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Enrollment_Student" Association="Self.FK_Enrollment_Student">
+      <End Role="Student" EntitySet="Student" />
+      <End Role="Enrollment" EntitySet="Enrollment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Grade_Assignment" Association="Self.FK_Grade_Assignment">
+      <End Role="Assignment" EntitySet="Assignment" />
+      <End Role="Grade" EntitySet="Grade" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Grade_Grade" Association="Self.FK_Grade_Grade">
+      <End Role="Grade" EntitySet="Grade" />
+      <End Role="Grade1" EntitySet="Grade" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Grade_Student" Association="Self.FK_Grade_Student">
+      <End Role="Student" EntitySet="Student" />
+      <End Role="Grade" EntitySet="Grade" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Instructor_Users" Association="Self.FK_Instructor_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Instructor" EntitySet="Instructor" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pages_Section" Association="Self.FK_Pages_Section">
+      <End Role="Section" EntitySet="Section" />
+      <End Role="Pages" EntitySet="Pages" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Quiz_Assignment" Association="Self.FK_Quiz_Assignment">
+      <End Role="Assignment" EntitySet="Assignment" />
+      <End Role="Quiz" EntitySet="Quiz" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Replies_Discussion" Association="Self.FK_Replies_Discussion">
+      <End Role="Discussion" EntitySet="Discussion" />
+      <End Role="Replies" EntitySet="Replies" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Replies_Student" Association="Self.FK_Replies_Student">
+      <End Role="Student" EntitySet="Student" />
+      <End Role="Replies" EntitySet="Replies" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Section_Instructor" Association="Self.FK_Section_Instructor">
+      <End Role="Instructor" EntitySet="Instructor" />
+      <End Role="Section" EntitySet="Section" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SectionFiles_Section" Association="Self.FK_SectionFiles_Section">
+      <End Role="Section" EntitySet="Section" />
+      <End Role="SectionFiles" EntitySet="SectionFiles" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

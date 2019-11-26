@@ -1,0 +1,12 @@
+C:\Users\wacey\Documents\cs3550advDatabase\LmsInfoGenerator\LmsInfoGenerator\bin\Debug\LmsInfoGenerator.exe.config
+C:\Users\wacey\Documents\cs3550advDatabase\LmsInfoGenerator\LmsInfoGenerator\bin\Debug\LmsInfoGenerator.exe
+C:\Users\wacey\Documents\cs3550advDatabase\LmsInfoGenerator\LmsInfoGenerator\bin\Debug\LmsInfoGenerator.pdb
+C:\Users\wacey\Documents\cs3550advDatabase\LmsInfoGenerator\LmsInfoGenerator\bin\Debug\EntityFramework.dll
+C:\Users\wacey\Documents\cs3550advDatabase\LmsInfoGenerator\LmsInfoGenerator\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\wacey\Documents\cs3550advDatabase\LmsInfoGenerator\LmsInfoGenerator\bin\Debug\EntityFramework.xml
+C:\Users\wacey\Documents\cs3550advDatabase\LmsInfoGenerator\LmsInfoGenerator\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\wacey\Documents\cs3550advDatabase\LmsInfoGenerator\LmsInfoGenerator\obj\Debug\LmsInfoGenerator.csprojAssemblyReference.cache
+C:\Users\wacey\Documents\cs3550advDatabase\LmsInfoGenerator\LmsInfoGenerator\obj\Debug\LmsInfoGenerator.csproj.CoreCompileInputs.cache
+C:\Users\wacey\Documents\cs3550advDatabase\LmsInfoGenerator\LmsInfoGenerator\obj\Debug\LmsInfoGenerator.csproj.CopyComplete
+C:\Users\wacey\Documents\cs3550advDatabase\LmsInfoGenerator\LmsInfoGenerator\obj\Debug\LmsInfoGenerator.exe
+C:\Users\wacey\Documents\cs3550advDatabase\LmsInfoGenerator\LmsInfoGenerator\obj\Debug\LmsInfoGenerator.pdb

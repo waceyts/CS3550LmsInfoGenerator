@@ -1,0 +1,389 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="lmsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Assignment">
+    <Key>
+      <PropertyRef Name="assignmentId" />
+    </Key>
+    <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="dueDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="openDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="assignmentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="sectionId" Type="Int32" Nullable="false" />
+    <Property Name="points" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Assignment1" Relationship="Self.FK_Assignment_Assignment" FromRole="Assignment" ToRole="Assignment1" />
+    <NavigationProperty Name="Assignment2" Relationship="Self.FK_Assignment_Assignment" FromRole="Assignment1" ToRole="Assignment" />
+    <NavigationProperty Name="Grades" Relationship="Self.FK_Grade_Assignment" FromRole="Assignment" ToRole="Grade" />
+    <NavigationProperty Name="Quizs" Relationship="Self.FK_Quiz_Assignment" FromRole="Assignment" ToRole="Quiz" />
+  </EntityType>
+  <EntityType Name="Course">
+    <Key>
+      <PropertyRef Name="courseId" />
+    </Key>
+    <Property Name="courseId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="course_title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="course_num" Type="Int32" Nullable="false" />
+    <Property Name="department" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Discussion">
+    <Key>
+      <PropertyRef Name="discussionId" />
+    </Key>
+    <Property Name="discussionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="sectionId" Type="Int32" />
+    <Property Name="openDate" Type="DateTime" Precision="3" />
+    <Property Name="closeDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Replies" Relationship="Self.FK_Replies_Discussion" FromRole="Discussion" ToRole="Replies" />
+  </EntityType>
+  <EntityType Name="Enrollment">
+    <Key>
+      <PropertyRef Name="studentId" />
+      <PropertyRef Name="sectionId" />
+    </Key>
+    <Property Name="studentId" Type="Int32" Nullable="false" />
+    <Property Name="sectionId" Type="Int32" Nullable="false" />
+    <Property Name="final_grade" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PassFail" Type="Boolean" />
+    <NavigationProperty Name="Section" Relationship="Self.FK_Enrollment_Section" FromRole="Enrollment" ToRole="Section" />
+    <NavigationProperty Name="Student" Relationship="Self.FK_Enrollment_Student" FromRole="Enrollment" ToRole="Student" />
+  </EntityType>
+  <EntityType Name="Grade">
+    <Key>
+      <PropertyRef Name="studentId" />
+      <PropertyRef Name="assignmentId" />
+    </Key>
+    <Property Name="studentId" Type="Int32" Nullable="false" />
+    <Property Name="assignmentId" Type="Int32" Nullable="false" />
+    <Property Name="comments" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="rubric" Type="String" MaxLength="3000" FixedLength="false" Unicode="false" />
+    <Property Name="value" Type="Int32" />
+    <Property Name="filePath" Type="String" MaxLength="260" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Assignment" Relationship="Self.FK_Grade_Assignment" FromRole="Grade" ToRole="Assignment" />
+    <NavigationProperty Name="Grade1" Relationship="Self.FK_Grade_Grade" FromRole="Grade" ToRole="Grade1" />
+    <NavigationProperty Name="Grade2" Relationship="Self.FK_Grade_Grade" FromRole="Grade1" ToRole="Grade" />
+    <NavigationProperty Name="Student" Relationship="Self.FK_Grade_Student" FromRole="Grade" ToRole="Student" />
+  </EntityType>
+  <EntityType Name="Instructor">
+    <Key>
+      <PropertyRef Name="instructorId" />
+    </Key>
+    <Property Name="userId" Type="Int32" />
+    <Property Name="first_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="last_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="instructorId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="bio" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="department" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="User" Relationship="Self.FK_Instructor_Users" FromRole="Instructor" ToRole="Users" />
+    <NavigationProperty Name="Sections" Relationship="Self.FK_Section_Instructor" FromRole="Instructor" ToRole="Section" />
+  </EntityType>
+  <EntityType Name="Page">
+    <Key>
+      <PropertyRef Name="pageId" />
+    </Key>
+    <Property Name="sectionId" Type="Int32" />
+    <Property Name="pageId" Type="String" MaxLength="90" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Section" Relationship="Self.FK_Pages_Section" FromRole="Pages" ToRole="Section" />
+  </EntityType>
+  <EntityType Name="Quiz">
+    <Key>
+      <PropertyRef Name="quizId" />
+    </Key>
+    <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="dueDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="openDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="sectionId" Type="Int32" Nullable="false" />
+    <Property Name="security" Type="Int32" Nullable="false" />
+    <Property Name="assignmentId" Type="Int32" Nullable="false" />
+    <Property Name="securitySettings" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="quizId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="Assignment" Relationship="Self.FK_Quiz_Assignment" FromRole="Quiz" ToRole="Assignment" />
+  </EntityType>
+  <EntityType Name="Reply">
+    <Key>
+      <PropertyRef Name="replyId" />
+    </Key>
+    <Property Name="discussionId" Type="Int32" />
+    <Property Name="studentId" Type="Int32" />
+    <Property Name="replyText" Type="String" MaxLength="3000" FixedLength="false" Unicode="false" />
+    <Property Name="replyDate" Type="DateTime" Precision="3" />
+    <Property Name="replyId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="Discussion" Relationship="Self.FK_Replies_Discussion" FromRole="Replies" ToRole="Discussion" />
+    <NavigationProperty Name="Student" Relationship="Self.FK_Replies_Student" FromRole="Replies" ToRole="Student" />
+  </EntityType>
+  <EntityType Name="Section">
+    <Key>
+      <PropertyRef Name="sectionId" />
+    </Key>
+    <Property Name="sectionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="location" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="instructorId" Type="Int32" />
+    <Property Name="semester" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="meeting_times" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="prerequisites" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="courseId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Enrollments" Relationship="Self.FK_Enrollment_Section" FromRole="Section" ToRole="Enrollment" />
+    <NavigationProperty Name="Instructor" Relationship="Self.FK_Section_Instructor" FromRole="Section" ToRole="Instructor" />
+    <NavigationProperty Name="Pages" Relationship="Self.FK_Pages_Section" FromRole="Section" ToRole="Pages" />
+    <NavigationProperty Name="SectionFiles" Relationship="Self.FK_SectionFiles_Section" FromRole="Section" ToRole="SectionFiles" />
+  </EntityType>
+  <EntityType Name="SectionFile">
+    <Key>
+      <PropertyRef Name="sectionId" />
+      <PropertyRef Name="filePath" />
+    </Key>
+    <Property Name="sectionId" Type="Int32" Nullable="false" />
+    <Property Name="filePath" Type="String" MaxLength="260" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Section" Relationship="Self.FK_SectionFiles_Section" FromRole="SectionFiles" ToRole="Section" />
+  </EntityType>
+  <EntityType Name="Student">
+    <Key>
+      <PropertyRef Name="studentId" />
+    </Key>
+    <Property Name="userId" Type="Int32" />
+    <Property Name="first_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="last_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="studentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="Enrollments" Relationship="Self.FK_Enrollment_Student" FromRole="Student" ToRole="Enrollment" />
+    <NavigationProperty Name="Grades" Relationship="Self.FK_Grade_Student" FromRole="Student" ToRole="Grade" />
+    <NavigationProperty Name="Replies" Relationship="Self.FK_Replies_Student" FromRole="Student" ToRole="Replies" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="userId" />
+    </Key>
+    <Property Name="userId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="username" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Instructors" Relationship="Self.FK_Instructor_Users" FromRole="Users" ToRole="Instructor" />
+  </EntityType>
+  <Association Name="FK_Assignment_Assignment">
+    <End Role="Assignment" Type="Self.Assignment" Multiplicity="1" />
+    <End Role="Assignment1" Type="Self.Assignment" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Assignment">
+        <PropertyRef Name="assignmentId" />
+      </Principal>
+      <Dependent Role="Assignment1">
+        <PropertyRef Name="assignmentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Grade_Assignment">
+    <End Role="Assignment" Type="Self.Assignment" Multiplicity="1" />
+    <End Role="Grade" Type="Self.Grade" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Assignment">
+        <PropertyRef Name="assignmentId" />
+      </Principal>
+      <Dependent Role="Grade">
+        <PropertyRef Name="assignmentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Quiz_Assignment">
+    <End Role="Assignment" Type="Self.Assignment" Multiplicity="1" />
+    <End Role="Quiz" Type="Self.Quiz" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Assignment">
+        <PropertyRef Name="assignmentId" />
+      </Principal>
+      <Dependent Role="Quiz">
+        <PropertyRef Name="assignmentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Replies_Discussion">
+    <End Role="Discussion" Type="Self.Discussion" Multiplicity="0..1" />
+    <End Role="Replies" Type="Self.Reply" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Discussion">
+        <PropertyRef Name="discussionId" />
+      </Principal>
+      <Dependent Role="Replies">
+        <PropertyRef Name="discussionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Enrollment_Section">
+    <End Role="Section" Type="Self.Section" Multiplicity="1" />
+    <End Role="Enrollment" Type="Self.Enrollment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Section">
+        <PropertyRef Name="sectionId" />
+      </Principal>
+      <Dependent Role="Enrollment">
+        <PropertyRef Name="sectionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Enrollment_Student">
+    <End Role="Student" Type="Self.Student" Multiplicity="1" />
+    <End Role="Enrollment" Type="Self.Enrollment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="studentId" />
+      </Principal>
+      <Dependent Role="Enrollment">
+        <PropertyRef Name="studentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Grade_Grade">
+    <End Role="Grade" Type="Self.Grade" Multiplicity="1" />
+    <End Role="Grade1" Type="Self.Grade" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Grade">
+        <PropertyRef Name="studentId" />
+        <PropertyRef Name="assignmentId" />
+      </Principal>
+      <Dependent Role="Grade1">
+        <PropertyRef Name="studentId" />
+        <PropertyRef Name="assignmentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Grade_Student">
+    <End Role="Student" Type="Self.Student" Multiplicity="1" />
+    <End Role="Grade" Type="Self.Grade" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="studentId" />
+      </Principal>
+      <Dependent Role="Grade">
+        <PropertyRef Name="studentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Instructor_Users">
+    <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+    <End Role="Instructor" Type="Self.Instructor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="userId" />
+      </Principal>
+      <Dependent Role="Instructor">
+        <PropertyRef Name="userId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Section_Instructor">
+    <End Role="Instructor" Type="Self.Instructor" Multiplicity="0..1" />
+    <End Role="Section" Type="Self.Section" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Instructor">
+        <PropertyRef Name="instructorId" />
+      </Principal>
+      <Dependent Role="Section">
+        <PropertyRef Name="instructorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pages_Section">
+    <End Role="Section" Type="Self.Section" Multiplicity="0..1" />
+    <End Role="Pages" Type="Self.Page" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Section">
+        <PropertyRef Name="sectionId" />
+      </Principal>
+      <Dependent Role="Pages">
+        <PropertyRef Name="sectionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Replies_Student">
+    <End Role="Student" Type="Self.Student" Multiplicity="0..1" />
+    <End Role="Replies" Type="Self.Reply" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="studentId" />
+      </Principal>
+      <Dependent Role="Replies">
+        <PropertyRef Name="studentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SectionFiles_Section">
+    <End Role="Section" Type="Self.Section" Multiplicity="1" />
+    <End Role="SectionFiles" Type="Self.SectionFile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Section">
+        <PropertyRef Name="sectionId" />
+      </Principal>
+      <Dependent Role="SectionFiles">
+        <PropertyRef Name="sectionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="lmsEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Assignments" EntityType="Self.Assignment" />
+    <EntitySet Name="Courses" EntityType="Self.Course" />
+    <EntitySet Name="Discussions" EntityType="Self.Discussion" />
+    <EntitySet Name="Enrollments" EntityType="Self.Enrollment" />
+    <EntitySet Name="Grades" EntityType="Self.Grade" />
+    <EntitySet Name="Instructors" EntityType="Self.Instructor" />
+    <EntitySet Name="Pages" EntityType="Self.Page" />
+    <EntitySet Name="Quizs" EntityType="Self.Quiz" />
+    <EntitySet Name="Replies" EntityType="Self.Reply" />
+    <EntitySet Name="Sections" EntityType="Self.Section" />
+    <EntitySet Name="SectionFiles" EntityType="Self.SectionFile" />
+    <EntitySet Name="Students" EntityType="Self.Student" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <AssociationSet Name="FK_Assignment_Assignment" Association="Self.FK_Assignment_Assignment">
+      <End Role="Assignment" EntitySet="Assignments" />
+      <End Role="Assignment1" EntitySet="Assignments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Grade_Assignment" Association="Self.FK_Grade_Assignment">
+      <End Role="Assignment" EntitySet="Assignments" />
+      <End Role="Grade" EntitySet="Grades" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Quiz_Assignment" Association="Self.FK_Quiz_Assignment">
+      <End Role="Assignment" EntitySet="Assignments" />
+      <End Role="Quiz" EntitySet="Quizs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Replies_Discussion" Association="Self.FK_Replies_Discussion">
+      <End Role="Discussion" EntitySet="Discussions" />
+      <End Role="Replies" EntitySet="Replies" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Enrollment_Section" Association="Self.FK_Enrollment_Section">
+      <End Role="Section" EntitySet="Sections" />
+      <End Role="Enrollment" EntitySet="Enrollments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Enrollment_Student" Association="Self.FK_Enrollment_Student">
+      <End Role="Student" EntitySet="Students" />
+      <End Role="Enrollment" EntitySet="Enrollments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Grade_Grade" Association="Self.FK_Grade_Grade">
+      <End Role="Grade" EntitySet="Grades" />
+      <End Role="Grade1" EntitySet="Grades" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Grade_Student" Association="Self.FK_Grade_Student">
+      <End Role="Student" EntitySet="Students" />
+      <End Role="Grade" EntitySet="Grades" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Instructor_Users" Association="Self.FK_Instructor_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Instructor" EntitySet="Instructors" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Section_Instructor" Association="Self.FK_Section_Instructor">
+      <End Role="Instructor" EntitySet="Instructors" />
+      <End Role="Section" EntitySet="Sections" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pages_Section" Association="Self.FK_Pages_Section">
+      <End Role="Section" EntitySet="Sections" />
+      <End Role="Pages" EntitySet="Pages" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Replies_Student" Association="Self.FK_Replies_Student">
+      <End Role="Student" EntitySet="Students" />
+      <End Role="Replies" EntitySet="Replies" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SectionFiles_Section" Association="Self.FK_SectionFiles_Section">
+      <End Role="Section" EntitySet="Sections" />
+      <End Role="SectionFiles" EntitySet="SectionFiles" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

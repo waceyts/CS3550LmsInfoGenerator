@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="lmsModelStoreContainer" CdmEntityContainer="lmsEntities1">
+    <EntitySetMapping Name="Assignments">
+      <EntityTypeMapping TypeName="lmsModel.Assignment">
+        <MappingFragment StoreEntitySet="Assignment">
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="dueDate" ColumnName="dueDate" />
+          <ScalarProperty Name="openDate" ColumnName="openDate" />
+          <ScalarProperty Name="assignmentId" ColumnName="assignmentId" />
+          <ScalarProperty Name="sectionId" ColumnName="sectionId" />
+          <ScalarProperty Name="points" ColumnName="points" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Courses">
+      <EntityTypeMapping TypeName="lmsModel.Course">
+        <MappingFragment StoreEntitySet="Course">
+          <ScalarProperty Name="courseId" ColumnName="courseId" />
+          <ScalarProperty Name="course_title" ColumnName="course_title" />
+          <ScalarProperty Name="course_num" ColumnName="course_num" />
+          <ScalarProperty Name="department" ColumnName="department" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Discussions">
+      <EntityTypeMapping TypeName="lmsModel.Discussion">
+        <MappingFragment StoreEntitySet="Discussion">
+          <ScalarProperty Name="discussionId" ColumnName="discussionId" />
+          <ScalarProperty Name="sectionId" ColumnName="sectionId" />
+          <ScalarProperty Name="openDate" ColumnName="openDate" />
+          <ScalarProperty Name="closeDate" ColumnName="closeDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Enrollments">
+      <EntityTypeMapping TypeName="lmsModel.Enrollment">
+        <MappingFragment StoreEntitySet="Enrollment">
+          <ScalarProperty Name="studentId" ColumnName="studentId" />
+          <ScalarProperty Name="sectionId" ColumnName="sectionId" />
+          <ScalarProperty Name="final_grade" ColumnName="final_grade" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Grades">
+      <EntityTypeMapping TypeName="lmsModel.Grade">
+        <MappingFragment StoreEntitySet="Grade">
+          <ScalarProperty Name="studentId" ColumnName="studentId" />
+          <ScalarProperty Name="assignmentId" ColumnName="assignmentId" />
+          <ScalarProperty Name="comments" ColumnName="comments" />
+          <ScalarProperty Name="rubric" ColumnName="rubric" />
+          <ScalarProperty Name="value" ColumnName="value" />
+          <ScalarProperty Name="filePath" ColumnName="filePath" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Instructors">
+      <EntityTypeMapping TypeName="lmsModel.Instructor">
+        <MappingFragment StoreEntitySet="Instructor">
+          <ScalarProperty Name="userId" ColumnName="userId" />
+          <ScalarProperty Name="first_name" ColumnName="first_name" />
+          <ScalarProperty Name="last_name" ColumnName="last_name" />
+          <ScalarProperty Name="instructorId" ColumnName="instructorId" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="bio" ColumnName="bio" />
+          <ScalarProperty Name="department" ColumnName="department" />
+          <ScalarProperty Name="courseId" ColumnName="courseId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pages">
+      <EntityTypeMapping TypeName="lmsModel.Page">
+        <MappingFragment StoreEntitySet="Pages">
+          <ScalarProperty Name="sectionId" ColumnName="sectionId" />
+          <ScalarProperty Name="pageId" ColumnName="pageId" />
+          <ScalarProperty Name="text" ColumnName="text" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Quizs">
+      <EntityTypeMapping TypeName="lmsModel.Quiz">
+        <MappingFragment StoreEntitySet="Quiz">
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="dueDate" ColumnName="dueDate" />
+          <ScalarProperty Name="openDate" ColumnName="openDate" />
+          <ScalarProperty Name="sectionId" ColumnName="sectionId" />
+          <ScalarProperty Name="security" ColumnName="security" />
+          <ScalarProperty Name="assignmentId" ColumnName="assignmentId" />
+          <ScalarProperty Name="securitySettings" ColumnName="securitySettings" />
+          <ScalarProperty Name="quizId" ColumnName="quizId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Replies">
+      <EntityTypeMapping TypeName="lmsModel.Reply">
+        <MappingFragment StoreEntitySet="Replies">
+          <ScalarProperty Name="discussionId" ColumnName="discussionId" />
+          <ScalarProperty Name="studentId" ColumnName="studentId" />
+          <ScalarProperty Name="replyText" ColumnName="replyText" />
+          <ScalarProperty Name="replyDate" ColumnName="replyDate" />
+          <ScalarProperty Name="replyId" ColumnName="replyId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sections">
+      <EntityTypeMapping TypeName="lmsModel.Section">
+        <MappingFragment StoreEntitySet="Section">
+          <ScalarProperty Name="sectionId" ColumnName="sectionId" />
+          <ScalarProperty Name="location" ColumnName="location" />
+          <ScalarProperty Name="instructorId" ColumnName="instructorId" />
+          <ScalarProperty Name="semester" ColumnName="semester" />
+          <ScalarProperty Name="meeting_times" ColumnName="meeting_times" />
+          <ScalarProperty Name="prerequisites" ColumnName="prerequisites" />
+          <ScalarProperty Name="courseId" ColumnName="courseId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SectionFiles">
+      <EntityTypeMapping TypeName="lmsModel.SectionFile">
+        <MappingFragment StoreEntitySet="SectionFiles">
+          <ScalarProperty Name="sectionId" ColumnName="sectionId" />
+          <ScalarProperty Name="filePath" ColumnName="filePath" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Students">
+      <EntityTypeMapping TypeName="lmsModel.Student">
+        <MappingFragment StoreEntitySet="Student">
+          <ScalarProperty Name="first_name" ColumnName="first_name" />
+          <ScalarProperty Name="last_name" ColumnName="last_name" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="studentId" ColumnName="studentId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="lmsModel.User">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="userId" ColumnName="userId" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="password" ColumnName="password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
